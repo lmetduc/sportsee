@@ -1,0 +1,115 @@
+.body {
+    padding: 10% 0 5% 15%;
+}
+
+.home-title {
+    display: flex;
+    flex-direction: row;
+    font-size: 32px;
+    font-weight:600;
+    color: black;
+    z-index: 3;
+    position: relative;
+
+}
+
+.home-text {
+    margin: 20px 0 20px 0;
+    font-size: 14px;
+}
+
+.message {
+    margin: 0 8px 0 0;
+}
+
+.home-username {
+    color: red;
+}
+
+.content-block {
+    display: flex;
+    flex-direction: row;
+}
+
+.chart-list {
+
+}
+
+.column-chart {
+    width: 900px;
+    height: 250px;
+    background: #FBFBFB;
+
+}
+
+.block-chart {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 10px 0 0;
+}
+
+.chart {
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    width: 200px;
+    height:200px;
+    background: #FBFBFB;
+}
+
+.loader-container {
+    position: fixed;
+    z-index: 10000;
+    background-color: #fff999;
+    animation: hide 0s ease-in 1.5s forwards;
+}
+
+  .loader {
+      display: flex;
+      flex-direction: center;
+      align-items: center;
+      justify-content: center;
+      justify-items: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        position: relative;
+        animation: rotate 1s linear infinite;
+      }
+
+  .loader::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 5px solid #FF0000;
+    ;
+    animation: prixClipFix 2s linear infinite ;
+  }
+
+  @keyframes rotate {
+    100%   {transform: rotate(360deg)}
+  }
+
+  @keyframes prixClipFix {
+      0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+      25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+      50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+      75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+      100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+  }
+
+  @keyframes hide {
+    100% {
+      width: 0;
+      height: 0;
+      z-index: -1;
+      visibility: hidden;
+      pointer-events: none;
+    }}
+

@@ -1,0 +1,73 @@
+.side-menu {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.setting {
+   display: flex;
+   align-items: center;
+   flex-direction: row;
+    width: 200px;
+    height: 90px;
+    background: #FBFBFB;
+    justify-content: space-between;
+    border-radius: 5px;
+    margin : 10px;
+
+}
+
+.setting-icon {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    margin: 0 10px 0 20px;
+
+}
+
+.nutrition-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calorie {
+    background: rgba(255, 0, 0, 0.07);
+}
+
+.protein {
+    background: rgba(74, 184, 255, 0.1);
+}
+
+.carbohydrate {
+    background: rgba(249, 206, 35, 0.1);
+
+}
+
+.fat {
+    background: rgba(253, 81, 129, 0.1);
+}
+
+.block-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width:50%;
+    
+}
+
+.title-info {
+    font-weight: bold;
+    font-size: 16px;
+
+}
+
+.type-info {
+    color: #74798C;
+    font-size: 12px;
+    margin: 5px 0 0 0;
+}

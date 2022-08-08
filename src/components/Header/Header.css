@@ -1,0 +1,48 @@
+.sportsee-head {
+	display: flex;
+	justify-content: center;
+	background: black;
+	position: absolute;
+	width: 100%;
+	height: 10%;
+	z-index: 1;
+}
+
+.sportsee-banner {
+	color: black;
+	padding: 30px;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	align-items: center;
+	width: 90%;
+}
+
+.sportsee-block {
+	display: flex;
+	gap: 32px;
+	justify-content: space-between;
+	width: 70%;
+}
+
+.sportsee-nav {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+	justify-content: space-between;
+}
+
+.sportsee-logo {
+	height: auto;
+	width: 140px;
+}
+
+@media (max-width: 700px) {
+	.sportsee-logo {
+		width: 110px;
+	}
+
+	.sportsee-block {
+		gap: 10px;
+	}
+}
