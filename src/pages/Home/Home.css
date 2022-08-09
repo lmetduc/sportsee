@@ -59,6 +59,19 @@
     width: 200px;
     height:200px;
     background: #FBFBFB;
+    border-radius:5px;
+}
+
+.polar-chart  {
+    background: #282D30;
+}
+
+.line-chart {
+    background: #ff0000;
+}
+
+.pie-chart {
+    padding:20px;
 }
 
 .loader-container {
