@@ -1,0 +1,24 @@
+.error-page {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    color:#ff0106;
+    padding-top: 100px;
+}
+
+.error {
+    font-size: 150px;
+    font-weight: 600;
+
+}
+
+.info {
+    font-size: 20px;
+
+}
+
+.link-home {
+    padding: 100px 0 50px 0;
+    font-size: 14px;
+    color :#ff0106;
+}

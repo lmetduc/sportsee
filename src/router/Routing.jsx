@@ -1,4 +1,3 @@
-import Header from "../components/Header/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "../pages/Home/Home";
@@ -7,10 +6,8 @@ import Community from "../pages/Community/Community";
 import Error from "../pages/Error/Error";
 import Profile from "../pages/Profile/Profile";
 
-export default function App() {
+export default function createRouter() {
   return (
-    <div>
-      <Header />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -20,6 +17,5 @@ export default function App() {
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
-    </div>
   );
 }
