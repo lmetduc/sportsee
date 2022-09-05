@@ -13,11 +13,16 @@ export default function App() {
       <Header />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} /> 
+          {/*<Route path="/:id" element={<Home />} /> */}
           <Route path="/profile" element={<Profile />} />
           <Route path="/setting" element={<Setting />} />
           <Route path="/community" element={<Community />} />
-          <Route path="*" element={<Error />} />
+
+          <Route path="/user/:id/activity" element={<Community />} />
+          <Route path="/user/:id/average-sessions" element={<Community />} />
+          <Route path="/user/:id/performance" element={<Community />} />
+          <Route path="*" element={<Error />} /> 
         </Routes>
       </BrowserRouter>
     </div>

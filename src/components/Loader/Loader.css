@@ -2,7 +2,7 @@
     position: fixed;
     z-index: 10000;
     background-color: #fff999;
-    animation: hide 0s ease-in 1.5s forwards;
+    /*animation: hide 0s ease-in 1.5s forwards;*/
 }
 
   .loader {

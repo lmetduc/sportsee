@@ -1,92 +1,116 @@
-import React, { PureComponent } from 'react';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import React from "react";
+import { useState, useEffect } from "react";
+import {
+  BarChart,
+  Bar,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import "./ColumnChart.css";
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import Loader from "../../components/Loader/Loader";
+import useFetch from "../../utils/useFetch";
 
-const data = [
-    {
-      name: '1',
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
-    },
-    {
-      name: '2',
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
-    },
-    {
-      name: 'C',
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
-    },
-    {
-      name: 'D',
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
-    },
-    {
-      name: 'E',
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
-    },
-    {
-      name: 'F',
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
-    },
-    {
-      name: 'G',
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
-    },
-  ];
 
-  const Title = styled.h2`
-position:absolute;
-left: 20%;
-top: 15%;
-transform: translate(-50%, -50%);
-font-size: 20px;
-color: #20253A;
-font-weight: 700;
-`;
-  
-  export default class Example1 extends PureComponent {
-    static demoUrl = 'https://codesandbox.io/s/simple-bar-chart-tpz8r';
-  
-    render() {
+function ColumnChart({ userID }) {
+  const [data, isLoading] = useFetch(
+    `http://localhost:3000/user/${userID}/activity`
+  );
+  const [values, setValues] = useState(null);
+
+  useEffect(() => {
+    if (data !== null) {
+      let results = [];
+
+      data.sessions.map((item, i) => {
+        results.push({
+          day: i + 1,
+          kilogram: item.kilogram,
+          calories: item.calories
+        });
+      });
+
+      setValues(results);
+    }
+  }, [data]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  const CustomTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
       return (
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            width={1800}
-            height={300}
-            data={data}
-            margin={{
-              top: 15,
-              right: 30,
-              left: 15,
-              bottom: 15,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Title>Activités quotidiennes</Title>
-            <Legend verticalAlign="top" wrapperStyle={{ paddingBottom: '65px' }}/>
-            <Bar dataKey="pv" fill="#000000" barSize={7} radius={[3, 3, 0, 0]}/>
-            <Bar dataKey="uv" fill="#FF0000" barSize={7} radius={[3, 3, 0, 0]}/>
-          </BarChart>
-        </ResponsiveContainer>
+        <div className="custom-tooltip">
+          <p className="label">{`${payload[0].value}`}kg</p>
+          <p className="label">{`${payload[1].value}`}Kcal</p>
+        </div>
       );
     }
-  }
   
+    return null;
+  };
+
+  return (
+    <div className="barchart">
+    <h2 className="barchart-title">Activité quotidienne</h2>
+    <div className="barchart-container">
+
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart
+        width={1800}
+        height={300}
+        data={values}
+        margin={{
+          top: 15,
+          right: 30,
+          left: 15,
+          bottom: 15,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" vertical={false} />
+        <XAxis
+          dataKey="day"
+          axisLine={{ stroke: "#B5AEB2" }}
+          tickLine={false}
+          tick={{ fill: "#B5AEB2" }}
+        />
+        <YAxis
+          axisLine={false}
+          tickLine={false}
+          tick={{ fill: "#B5AEB2" }}
+          orientation="right"
+        ></YAxis>
+        <Tooltip content={<CustomTooltip />} />
+        <Legend
+          verticalAlign="top"
+          align="right"
+          wrapperStyle={{ paddingBottom: "65px" }}
+        />
+        <Bar
+          dataKey="kilogram"
+          name="Poids (kg)"
+          fill="#000000"
+          barSize={7}
+          radius={[2, 2, 0, 0]}
+          legendType="circle"
+        />
+        <Bar
+          dataKey="calories"
+          name="Calories brûlées (kCal)"
+          fill="#FF0000"
+          barSize={7}
+          radius={[3, 3, 0, 0]}
+          legendType="circle"
+        />
+      </BarChart>
+    </ResponsiveContainer>
+    </div>
+        </div>
+  );
+}
+export default ColumnChart;

@@ -1,0 +1,45 @@
+.piechart {
+    position: relative;
+    width: 200px;
+    height: 200px;
+
+}
+
+.piechart-title {
+position: absolute;
+width: 120px;
+height: 20px;
+font-size: 14px;
+padding: 0 0 10px 20px;
+color: #20253A;
+opacity: 0.6;
+
+}
+
+.piechart-container {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+}
+
+.text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+    line-height: 26px;
+    font-weight: 700;
+    text-align: center;
+    color: #74798c;
+
+}
+
+.score {
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 700;
+    font-size: 26px;
+}

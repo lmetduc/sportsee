@@ -1,81 +1,85 @@
-import React, { PureComponent } from 'react';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import React, { PureComponent, useState, useEffect } from "react";
+import {
+  PieChart as PieChartReCharts,
+  Pie,
+  Sector,
+  Cell,
+  ResponsiveContainer,
+} from "recharts";
+import PropTypes from "prop-types";
+import useFetch from "../../utils/useFetch";
+import Loader from "../../components/Loader/Loader";
+import "./PieChart.css";
 
-const data = [
-  { name: 'Group A', value: 400 },
-];
-const COLORS = ['#ff0000', 'rgba(0, 0, 0, 0.65)'];
 
-const Container = styled.div`
-position:relative;
-width:258px;
-height:263px;
-`;
+function PieChart({ userID }) {
+  const [data, isLoading] = useFetch(`http://localhost:3000/user/${userID}`);
 
-const Title = styled.h2`
-position:absolute;
-left: 20%;
-top: 15%;
-transform: translate(-50%, -50%);
-font-size: 14px;
-color: #20253A;
-font-weight: 700;
-`;
+  const [values, setValues] = useState(null);
+  const [endAngle, setEndAngle] = useState(null);
 
-const Text = styled.p`
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 15px;
-    line-height: 26px;
-    font-weight: 700;
-    text-align: center;
-    color: #74798C;
-`
+  useEffect(() => {
+    if (data !== null) {
+      const results = [
+        {
+          value: data.todayScore * 100,
+        },
+      ];
 
-const Score = styled.span`
-    color: rgba(0, 0, 0, 0.8);
-    font-weight: 700;
-    font-size: 26px;
-`
+      setValues(results);
+      setEndAngle(360 * data.todayScore);
+    }
+  }, [data]);
 
-export default class Example2 extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/s/pie-chart-with-padding-angle-7ux0o';
-
-  render() {
-    return (
-        <Container>
-            <Title>Score</Title>
-            <ResponsiveContainer width='100%' height='100%'>
-      <PieChart width={200} height={200} onMouseEnter={this.onPieEnter} align="center">
-        <Pie
-          data={data}
-          cx={this.props.width / 2}
-          cy={100}
-          innerRadius={60}
-          outerRadius={70}
-          startAngle={90}
-          cornerRadius="50%"
-          fill="#ffffff"
-          paddingAngle={2}
-          dataKey="value"
-        >
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>
-          ))}
-        </Pie>
-      </PieChart>
-      </ResponsiveContainer>
-      <Text>
-                <Score>{12}%<br/></Score>
-                de votre<br/> objectif
-            </Text>
-      </Container>
-    );
+  if (isLoading) {
+    return <Loader />;
   }
+
+  return (
+    <div className="piechart">
+    <h2 className="piechart-title">Score</h2>
+    <div className="piechart-container">
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChartReCharts width={200} height={200} align="center">
+          <Pie
+            data={values}
+            cx={100}
+            cy={100}
+            innerRadius={60}
+            outerRadius={70}
+            startAngle={0}
+            endAngle={endAngle}
+            cornerRadius="50%"
+            fill="#ff0000"
+            paddingAngle={2}
+            dataKey="value"
+          >
+          </Pie>
+          <Pie
+            data={values}
+            cx={100}
+            cy={100}
+            innerRadius={60}
+            outerRadius={70}
+            startAngle={endAngle}
+            endAngle={360}
+            cornerRadius="50%"
+            fill="#ffffff"
+            paddingAngle={2}
+            dataKey="value"
+          >
+          </Pie>
+        </PieChartReCharts>
+      </ResponsiveContainer>
+      <div className="text">
+        <div className="score">
+        {data.todayScore *100}%<br />
+        </div>
+        de votre<br /> objectif
+      </div>
+    </div>
+    </div>
+  );
 }
 
-
+export default PieChart;

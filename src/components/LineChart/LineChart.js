@@ -1,54 +1,80 @@
 import React, { PureComponent } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart as LineChartReCharts, Text,Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import Loader from "../../components/Loader/Loader";
+import { useState, useEffect } from "react";
+import useFetch from "../../utils/useFetch";
+import "./LineChart.css";
 
-const data = [
-  {
-    name: 'Page A',
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Page B',
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Page C',
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Page D',
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Page E',
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Page F',
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Page G',
-    pv: 4300,
-    amt: 2100,
-  },
-];
 
-export default class Example4 extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/s/simple-line-chart-kec3v';
+function LineChart({userID}) {
+  const [values, setValues] = useState(null)
+  const [data, isLoading] = useFetch(`http://localhost:3000/user/${userID}/average-sessions`)
 
-  render() {
+
+  useEffect(() => {
+    if (data !== null) {
+      let results = [];
+
+      data.sessions.map((item) => {
+        results.push({
+          day: Convert(item.day),
+          sessionLength: item.sessionLength,
+        });
+      });
+
+      setValues(results);
+    }
+  }, [data]);
+
+  if(isLoading){
+    return <Loader />
+  }
+
+  const CustomTooltip1 = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="custom-tooltip1">
+          <p className="label1">{`${payload[0].value}`} min</p>
+        </div>
+      );
+    }
+  
+    return null;
+  };
+
+  function Convert(value) {
+    switch (value) {
+      case 1:
+        return "L";
+      case 2:
+        return "M";
+      case 3:
+        return "M";
+      case 4:
+        return "J";
+      case 5:
+        return "V";
+      case 6:
+        return "S";
+      case 7:
+        return "D";
+      default:
+        return value;
+    }
+  }
+
+
     return (
+      <div className="linechart">
+      <h2 className="linechart-title">Durée moyenne des sessions</h2>
+      <div className="linechart-container">
+
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart
+
+        <LineChartReCharts
           width={500}
           height={300}
-          data={data}
+          data={values}
           margin={{
             top: 5,
             right: 30,
@@ -56,14 +82,20 @@ export default class Example4 extends PureComponent {
             bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="pv" stroke="#fff" activeDot={{ r: 6 }} />
-        </LineChart>
+          <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{fill:'#ffffff', opacity:0.6}}></XAxis>
+          <YAxis hide={true}/>
+          <Tooltip content={<CustomTooltip1 />}             
+              cursor={{
+              stroke: "rgba(0, 0, 0, 0.1)",
+              strokeWidth: 32,
+
+            }}/>
+          <Line type="monotone" dataKey="sessionLength" stroke="#fff" opacity={0.6} activeDot={{ r: 3 }} />
+        </LineChartReCharts>
       </ResponsiveContainer>
+      </div>
+      </div>
     );
-  }
 }
+
+export default LineChart;

@@ -2,6 +2,8 @@ import "./Loader.css";
 
 export default function Loader() {
     return (
-        <div class="loader-container"><div class="loader"></div></div>
+        <div className="loader-container">
+            <div className="loader"></div>
+        </div>
     )
 }

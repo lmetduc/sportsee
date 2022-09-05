@@ -1,0 +1,36 @@
+.barchart {
+    position: relative;
+    width: 1000px;
+    height: 400px;
+
+}
+
+.barchart-title {
+position: absolute;
+width: 1000px;
+height: 20px;
+font-size: 16px;
+padding: 0 0 10px 20px;
+
+}
+
+.barchart-container {
+    display: flex;
+    width: 900px;
+    height: 250px;
+}
+
+.label {
+    color: white;
+    font-weight: bold;
+    font-size: 8px;
+}
+
+.custom-tooltip {
+    display: block;
+    text-align: center;
+    background: red;
+    width: 40px;
+    height: 100%;
+    padding: 5px;
+}
