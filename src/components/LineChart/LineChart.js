@@ -90,7 +90,7 @@ function LineChart({userID}) {
               strokeWidth: 32,
 
             }}/>
-          <Line type="monotone" dataKey="sessionLength" stroke="#fff" opacity={0.6} activeDot={{ r: 3 }} />
+          <Line type="monotone" dataKey="sessionLength" stroke="#fff" opacity={0.6} activeDot={{ r: 2 }} dot={false} />
         </LineChartReCharts>
       </ResponsiveContainer>
       </div>

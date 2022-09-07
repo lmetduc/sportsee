@@ -1,22 +1,29 @@
 import { useState, useEffect } from "react";
 
+
+//function useFetch (url, Factory, type) {
 function useFetch (url) {
-      const [data, setData] = useState(null);
-      const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState(null);
+ const [isLoading, setIsLoading] = useState(true);
+ // const [error, setError] = useState(null);
 
-      useEffect(() => {
+  useEffect(() => {
 
-          fetch(url)
-          .then(response => response.json())
-          .then(response => {
-            setData(response.data)
-            setIsLoading(false)
-        })
-          .catch((err) => console.log(err));
+      fetch(url)
+      .then(response => response.json())
+      .then(response => {
+        setData(response.data)
+        setIsLoading(false)
+        //const sessionData = new Factory(response.data,type);
+        //sessionData(response.data,type)
+    })
+      .catch((err) => console.log(err));
 
-      }, [url]);
+  }, [url]);
 
-      return [data, isLoading];
+  //  }, [url, Factory, type]);
+
+  return [data, isLoading];
 };
 
 export default useFetch;

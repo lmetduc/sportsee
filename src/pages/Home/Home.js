@@ -10,12 +10,13 @@ import LineChart from "../../components/LineChart/LineChart";
 import Loader from "../../components/Loader/Loader";
 import ColumnChart from "../../components/ColumnChart/ColumnChart";
 import useFetch from "../../utils/useFetch";
+import UserFactory from "../../factories/UserFactory";
 
 
 export default function Home() { 
 
   const id = 12 // Simule la récupration de l'ID via la connexion de l'utilisateur
-
+  //const url = "http://localhost:3000/user/${id}";
   //const { id } = useParams();
 
   const navigate = useNavigate();
@@ -23,9 +24,10 @@ export default function Home() {
   const [session, setSession]= useState(null);
   const [performance, setPerformance]= useState(null);
 
+// const [user, isLoading] = useFetch(`http://localhost:3000/user/${id}`)
+
+// const [user, isLoading] = useFetch(url, UserFactory, "user")
 const [user, isLoading] = useFetch(`http://localhost:3000/user/${id}`)
-
-
 
   // Soit on pas reçu les données => Loader
   if(isLoading){

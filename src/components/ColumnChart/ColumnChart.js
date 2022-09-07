@@ -62,7 +62,7 @@ function ColumnChart({ userID }) {
 
     <ResponsiveContainer width="100%" height="100%">
       <BarChart
-        width={1800}
+        width={900}
         height={300}
         data={values}
         margin={{
@@ -86,11 +86,10 @@ function ColumnChart({ userID }) {
           orientation="right"
         ></YAxis>
         <Tooltip content={<CustomTooltip />} />
-        <Legend
+        <Legend formatter={(value) => <span className="text-color-class">{value}</span>}           
           verticalAlign="top"
           align="right"
-          wrapperStyle={{ paddingBottom: "65px" }}
-        />
+          wrapperStyle={{ paddingBottom: "65px" }}/>
         <Bar
           dataKey="kilogram"
           name="Poids (kg)"
@@ -104,7 +103,7 @@ function ColumnChart({ userID }) {
           name="Calories brûlées (kCal)"
           fill="#FF0000"
           barSize={7}
-          radius={[3, 3, 0, 0]}
+          radius={[2, 2, 0, 0]}
           legendType="circle"
         />
       </BarChart>
