@@ -1,4 +1,4 @@
-import Activity from "../models/Activity";
+import Activity from "../model/Activity";
 
 class ActivityFactory {
   constructor(data, type) {

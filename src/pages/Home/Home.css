@@ -1,16 +1,27 @@
 .body {
-    padding: 10% 0 5% 15%;
+    position: relative;
+    padding: 6% 10% 0 15%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .home-title {
     display: flex;
-    flex-direction: row;
-    font-size: 32px;
+    justify-content: left;
+    flex-direction: column;
+    font-size: 30px;
     font-weight:600;
     color: black;
     z-index: 3;
     position: relative;
+    padding: 0 0 0 20px;
 
+}
+
+.home-message {
+    display: flex;
+    flex-direction: row;
 }
 
 .home-text {
@@ -26,14 +37,21 @@
     color: red;
 }
 
+.content {
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: left;
+    padding: 0 0 0 20px;
+}
+
 .content-block {
     display: flex;
     flex-direction: row;
 }
 
-.chart-list {
-
-}
+.sidemenu-component {
+    height: 80px;
+} 
 
 .column-chart {
     width: 800px;
@@ -56,17 +74,25 @@
     align-items: center;
     justify-content: center;
     justify-items: center;
-    width: 200px;
-    height:200px;
+    width: 220px;
+    height:220px;
     background: #FBFBFB;
     border-radius:5px;
 }
 
 .polar-chart  {
     background: #282D30;
+    padding: 0;
 }
 
 .line-chart {
     background: #ff0000;
 }
 
+@media (max-width: 1200px) {
+	.content {
+		display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+	}
+}

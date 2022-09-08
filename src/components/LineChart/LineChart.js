@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
-import { LineChart as LineChartReCharts, Text,Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart as LineChartReCharts, Text,Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Rectangle } from 'recharts';
 import Loader from "../../components/Loader/Loader";
 import { useState, useEffect } from "react";
 import useFetch from "../../utils/useFetch";
 import "./LineChart.css";
+import PropTypes from 'prop-types'
 
 
 function LineChart({userID}) {
@@ -42,6 +43,21 @@ function LineChart({userID}) {
     return null;
   };
 
+  const CustomCursor = (props) => {
+    const { points } = props;
+    const { x, y } = points[0];
+    return (
+    <Rectangle
+    fill="#ffffff"
+    stroke="none"
+    x={x}
+    y={0}
+    width="500"
+    height="500"
+    opacity={0.1}
+  />);
+  };
+
   function Convert(value) {
     switch (value) {
       case 1:
@@ -69,33 +85,45 @@ function LineChart({userID}) {
       <h2 className="linechart-title">Durée moyenne des sessions</h2>
       <div className="linechart-container">
 
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="100%" margin="10">
 
         <LineChartReCharts
-          width={500}
-          height={300}
+          width={100}
+          height={100}
           data={values}
           margin={{
             top: 5,
-            right: 30,
+            right: 16,
             left: 20,
-            bottom: 5,
+            bottom: 10,
           }}
         >
-          <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{fill:'#ffffff', opacity:0.6}}></XAxis>
+          <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{fill:'#ffffff', opacity:0.6}} dy={20} dx={5} margin={{bottom:20}} padding={{ bottom: 30 }}></XAxis>
           <YAxis hide={true}/>
-          <Tooltip content={<CustomTooltip1 />}             
-              cursor={{
-              stroke: "rgba(0, 0, 0, 0.1)",
-              strokeWidth: 32,
-
-            }}/>
-          <Line type="monotone" dataKey="sessionLength" stroke="#fff" opacity={0.6} activeDot={{ r: 2 }} dot={false} />
+          <Tooltip 
+          content={<CustomTooltip1 />}        
+          active={false}
+          cursor={<CustomCursor />} 
+          tick={{
+            fill: "#FFF",
+            fontFamily: "Roboto",
+            fontSize: "12px",
+            opacity: "0.6",
+          }}
+        />          
+          <Line type="natural" dataKey="sessionLength" stroke="#fff" opacity={0.6} activeDot={{ r: 2 }} dot={false} strokeWidth={3} width={100} height={50}/>
         </LineChartReCharts>
       </ResponsiveContainer>
       </div>
       </div>
     );
+}
+
+LineChart.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  area: PropTypes.string,
+  title: PropTypes.string,
+  titleColor: PropTypes.string,
 }
 
 export default LineChart;

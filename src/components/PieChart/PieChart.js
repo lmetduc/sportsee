@@ -35,6 +35,16 @@ function PieChart({ userID }) {
     return <Loader />;
   }
 
+  const COLORS = ["#222222"];
+  const pieData = [
+    { fillColor: "#E8E8E8" },
+  ];
+  const fullPie = [
+    {
+      "nameKey":"name",
+      "value": 360
+    }];
+
   return (
     <div className="piechart">
     <h2 className="piechart-title">Score</h2>
@@ -43,31 +53,46 @@ function PieChart({ userID }) {
         <PieChartReCharts width={200} height={200} align="center">
           <Pie
             data={values}
-            cx={100}
-            cy={100}
+            cx="50%"
+            cy="50%"
             innerRadius={60}
             outerRadius={70}
             startAngle={0}
             endAngle={endAngle}
             cornerRadius="50%"
             fill="#ff0000"
-            paddingAngle={2}
+            paddingAngle={1}
             dataKey="value"
           >
           </Pie>
           <Pie
             data={values}
-            cx={100}
-            cy={100}
-            innerRadius={60}
-            outerRadius={70}
+            cx="50%"
+            cy="50%"
+            outerRadius={65}
+            innerRadius={65}
             startAngle={endAngle}
             endAngle={360}
             cornerRadius="50%"
-            fill="#ffffff"
             paddingAngle={2}
-            dataKey="value"
+            stroke={'none'}
+            blendStroke={true}
+            isAnimationActive={false}
           >
+
+{pieData.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={entry.fillColor}
+                cornerRadius="50%"
+                style={{
+                  filter: `drop-shadow(0px 0px 5px ${
+                    COLORS[index % COLORS.length]
+                  }`
+                }}
+              />
+            ))}
+
           </Pie>
         </PieChartReCharts>
       </ResponsiveContainer>

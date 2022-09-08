@@ -43,12 +43,22 @@ const [user, isLoading] = useFetch(`http://localhost:3000/user/${id}`)
       {user ? (
         <div className="body">
           <div className="home-title">
-            <div className="message">Bonjour</div>
-            <div className="home-username">{user.userInfos.firstName}</div>
-          </div>
-          <div className="home-text">
+            <div className="home-message">            
+              <div className="message">Bonjour</div>
+              <div className="home-username">{user.userInfos.firstName}</div>
+            </div>
+
+            <div className="home-text">
             Félicitation ! Vous avez explosé vos objectifs hier 👏
           </div>
+          </div>
+
+          <div className="content">
+
+          <div className="sidemenu-component">
+              <SideMenu userID={id}/>
+              {/*<SideMenu user={user} /> */}
+            </div>
 
           <div className="content-block">
             <div className="chart-components">
@@ -75,11 +85,9 @@ const [user, isLoading] = useFetch(`http://localhost:3000/user/${id}`)
                 </div>
               </div>
             </div>
-
-            <div className="sidemenu-component">
-              <SideMenu userID={id}/>
-              {/*<SideMenu user={user} /> */}
             </div>
+
+
           </div>
         </div>
       ) : (

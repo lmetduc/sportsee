@@ -1,4 +1,4 @@
-import AverageSessions from "../models/AverageSessions";
+import AverageSessions from "../model/AverageSessions";
 
 class AverageSessionsFactory {
   constructor(data, type) {

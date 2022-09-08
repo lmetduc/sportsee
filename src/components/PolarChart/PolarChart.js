@@ -10,7 +10,6 @@ import {
   PolarRadiusAxis,
   ResponsiveContainer,
 } from "recharts";
-import styled from "styled-components";
 
 function PolarChart({ userID }) {
   const [data, isLoading] = useFetch(
@@ -58,6 +57,7 @@ function PolarChart({ userID }) {
   }
 
   return (
+
     <ResponsiveContainer width="100%" height="100%">
       <RadarChart cx="50%" cy="50%" outerRadius="50%" data={values}>
         <PolarGrid radialLines={false} />
@@ -68,7 +68,7 @@ function PolarChart({ userID }) {
           dy={4}
           tickLine={false}
           tick={{
-            fontSize: 12,
+            fontSize: 10,
             fontWeight: 500,
           }}
         />
@@ -80,6 +80,7 @@ function PolarChart({ userID }) {
         />
       </RadarChart>
     </ResponsiveContainer>
+
   );
 }
 export default PolarChart;

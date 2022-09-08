@@ -60,19 +60,19 @@ function ColumnChart({ userID }) {
     <h2 className="barchart-title">Activité quotidienne</h2>
     <div className="barchart-container">
 
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer width="100%" height="90%">
       <BarChart
         width={900}
-        height={300}
+        height={200}
         data={values}
         margin={{
-          top: 15,
-          right: 30,
-          left: 15,
-          bottom: 15,
+          top: 10,
+          right: 20,
+          left: 10,
+          bottom: 10,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" vertical={false} />
+        <CartesianGrid strokeDasharray="1 1" vertical={false} />
         <XAxis
           dataKey="day"
           axisLine={{ stroke: "#B5AEB2" }}
@@ -89,21 +89,24 @@ function ColumnChart({ userID }) {
         <Legend formatter={(value) => <span className="text-color-class">{value}</span>}           
           verticalAlign="top"
           align="right"
-          wrapperStyle={{ paddingBottom: "65px" }}/>
+          wrapperStyle={{ paddingBottom: "65px" }}
+          iconSize={8}
+          />
         <Bar
           dataKey="kilogram"
           name="Poids (kg)"
           fill="#000000"
           barSize={7}
-          radius={[2, 2, 0, 0]}
+          radius={[3, 3, 0, 0]}
           legendType="circle"
+          cx="2" cy="2"
         />
         <Bar
           dataKey="calories"
           name="Calories brûlées (kCal)"
           fill="#FF0000"
           barSize={7}
-          radius={[2, 2, 0, 0]}
+          radius={[3, 3, 0, 0]}
           legendType="circle"
         />
       </BarChart>
