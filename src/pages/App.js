@@ -6,11 +6,15 @@ import Setting from "../pages/Setting/Setting";
 import Community from "../pages/Community/Community";
 import Error from "../pages/Error/Error";
 import Profile from "../pages/Profile/Profile";
+import SportsMenu from "../components/SportsMenu/Sportsmenu";
+import "./App.css";
 
 export default function App() {
   return (
     <div>
       <Header />
+      <SportsMenu />
+      <div className="body-page">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} /> 
@@ -25,6 +29,7 @@ export default function App() {
           <Route path="*" element={<Error />} /> 
         </Routes>
       </BrowserRouter>
+      </div>
     </div>
   );
 }

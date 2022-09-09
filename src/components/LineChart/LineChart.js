@@ -30,7 +30,7 @@ function LineChart({userID}) {
   }, [data]);
 
   if(isLoading){
-    return <Loader />
+    return <Loader color="loader-white"/>
   }
 
   const CustomTooltip1 = ({ active, payload }) => {

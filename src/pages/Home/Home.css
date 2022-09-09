@@ -1,3 +1,10 @@
+.body-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 .body {
     position: relative;
     padding: 6% 10% 0 15%;
@@ -50,10 +57,17 @@
 }
 
 .sidemenu-component {
-    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    width:250px;
 } 
 
 .column-chart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 800px;
     height: 250px;
     background: #FBFBFB;
@@ -90,9 +104,22 @@
 }
 
 @media (max-width: 1200px) {
+    .body {
+        padding: 100px 0 0 50px;
+    }
+
 	.content {
 		display: flex;
         flex-direction: column;
+        align-items: center;
         flex-wrap: wrap;
 	}
+
+    .sidemenu-component {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        height: 90px;
+        width: 100%
+    }
 }

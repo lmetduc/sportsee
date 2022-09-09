@@ -1,9 +1,9 @@
 import "./Loader.css";
 
-export default function Loader() {
+export default function Loader(color) {
     return (
         <div className="loader-container">
-            <div className="loader"></div>
+            <div className={`loader ${color === "loader-white"? "loader-white" : ""}`}></div>
         </div>
     )
 }

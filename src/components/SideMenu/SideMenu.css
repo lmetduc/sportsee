@@ -78,11 +78,16 @@
 	.side-menu {
 		display: flex;
         flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         height: 100px;
         width: 800px
 	}
 
     .setting {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width : 180px;
         height: 70px;
         margin : 0;

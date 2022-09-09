@@ -31,14 +31,13 @@ const [user, isLoading] = useFetch(`http://localhost:3000/user/${id}`)
 
   // Soit on pas reçu les données => Loader
   if(isLoading){
-    return <p>Chargement en cours...</p>
+    return  <Loader />
   }
 
 
   // Soit on a reçu les données
   return (
-    <div>
-      <SportsMenu />
+    <div className="body-block">
 
       {user ? (
         <div className="body">

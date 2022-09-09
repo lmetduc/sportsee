@@ -1,6 +1,7 @@
 .sportsee-head {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	background: black;
 	position: absolute;
 	width: 100%;
