@@ -35,9 +35,9 @@ function PieChart({ userID }) {
     return <Loader />;
   }
 
-  const COLORS = ["#222222"];
+  const COLORS = ["#999999"];
   const pieData = [
-    { fillColor: "#E8E8E8" },
+    { fillColor: "#eeeeee" },
   ];
   const fullPie = [
     {
@@ -86,7 +86,7 @@ function PieChart({ userID }) {
                 fill={entry.fillColor}
                 cornerRadius="50%"
                 style={{
-                  filter: `drop-shadow(0px 0px 5px ${
+                  filter: `drop-shadow(0px 0px 3px ${
                     COLORS[index % COLORS.length]
                   }`
                 }}

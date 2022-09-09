@@ -1,7 +1,11 @@
 .loader-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
     position: fixed;
     z-index: 10000;
-    background-color: #fff999;
     /*animation: hide 0s ease-in 1.5s forwards;*/
 }
 
@@ -19,6 +23,10 @@
       }
 
   .loader::before {
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+    justify-content: center;
     content: "";
     box-sizing: border-box;
     position: absolute;

@@ -5,9 +5,11 @@ import { useState, useEffect } from "react";
 import useFetch from "../../utils/useFetch";
 import "./LineChart.css";
 import PropTypes from 'prop-types'
+import AverageSessionsFactory from "../../factories/AverageSessionsFactory";
 
 
 function LineChart({userID}) {
+  
   const [values, setValues] = useState(null)
   const [data, isLoading] = useFetch(`http://localhost:3000/user/${userID}/average-sessions`)
 
@@ -103,7 +105,7 @@ function LineChart({userID}) {
           <Tooltip 
           content={<CustomTooltip1 />}        
           active={false}
-          cursor={<CustomCursor />} 
+          cursor={<CustomCursor width={100} height={100}/>} 
           tick={{
             fill: "#FFF",
             fontFamily: "Roboto",
@@ -127,3 +129,5 @@ LineChart.propTypes = {
 }
 
 export default LineChart;
+
+

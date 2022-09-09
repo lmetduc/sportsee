@@ -13,7 +13,7 @@ function useFetch (url) {
       .then(response => response.json())
       .then(response => {
         setData(response.data)
-        setIsLoading(false)
+        setTimeout(() => { setIsLoading(false); }, 2000);
         //const sessionData = new Factory(response.data,type);
         //sessionData(response.data,type)
     })
