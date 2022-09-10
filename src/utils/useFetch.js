@@ -14,7 +14,7 @@ function useFetch (url) {
       .then(response => {
         setData(response.data)
         setTimeout(() => { setIsLoading(false); }, 2000);
-        //const sessionData = new Factory(response.data,type);
+        // const sessionData = new Factory(response.data,type);
         //sessionData(response.data,type)
     })
       .catch((err) => console.log(err));

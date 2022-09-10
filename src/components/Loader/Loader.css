@@ -32,12 +32,12 @@
     position: absolute;
     inset: 0px;
     border-radius: 50%;
-    border: 5px solid #FF0000;
+    border: 5px solid #767171;
     animation: prixClipFix 2s linear infinite ;
   }
 
   .loader-white::before {
-    border: 5px solid #FFFFFF;
+    border: 5px solid #FEFEFE;
   }
 
   @keyframes rotate {
