@@ -1,3 +1,10 @@
+.body-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 700px;
+}
+
 .error-page {
     display: flex;
     text-align: center;

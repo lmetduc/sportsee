@@ -5,12 +5,18 @@ import carbohydrate from "../../assets/apple.png";
 import fat from "../../assets/cheeseburger.png";
 import useFetch from "../../utils/useFetch";
 import Loader from "../../components/Loader/Loader";
+import UserFactory from "../../factories/UserFactory";
+import PropTypes from "prop-types";
 
 export default function SideMenu({ userID }) {
-  const [data, isLoading] = useFetch(`http://localhost:3000/user/${userID}`)
+  const [data, isLoading] = useFetch(
+    `http://localhost:3000/user/${userID}`,
+    UserFactory,
+    "api"
+  );
 
-  if(isLoading){
-    return <Loader />
+  if (isLoading) {
+    return <Loader />;
   }
 
   return (
@@ -26,7 +32,6 @@ export default function SideMenu({ userID }) {
           <div className="type-info">Calories</div>
         </div>
       </div>
-
       <div className="setting">
         <div className="setting-icon protein">
           <div className="protein-icon nutrition-icon">
@@ -38,7 +43,6 @@ export default function SideMenu({ userID }) {
           <div className="type-info">Protéines</div>
         </div>
       </div>
-
       <div className="setting">
         <div className="setting-icon carbohydrate">
           <div className="carbohydrate-icon nutrition-icon">
@@ -50,7 +54,6 @@ export default function SideMenu({ userID }) {
           <div className="type-info">Glucides</div>
         </div>
       </div>
-
       <div className="setting">
         <div className="setting-icon fat">
           <div className="fat-icon nutrition-icon">
@@ -64,4 +67,9 @@ export default function SideMenu({ userID }) {
       </div>
     </div>
   );
+}
+
+SideMenu.propTypes = {
+  userID : PropTypes.number.isRequired,
+
 }

@@ -1,12 +1,7 @@
 class Performance {
     constructor(data) {
-      this._id = data.id;
       this._kind = data.kind;
       this._data = data.data;
-    }
-  
-    get id() {
-      return this._id;
     }
   
     get kind() {
@@ -17,21 +12,36 @@ class Performance {
       return this._data;
     }
   
-    get value() {
-      return this._data.value;
-    }
-  
     get activityData() {
       return this._data.map((item) => {
+        let kind = this._kind[item.kind];
+        switch (kind) {
+          case "intensity":
+            kind = "Intensité";
+            break;
+          case "speed":
+            kind = "Vitesse";
+            break;
+          case "strength":
+            kind = "Force";
+            break;
+          case "endurance":
+            kind = "Endurance";
+            break;
+          case "energy":
+            kind = "Energie";
+            break;
+          case "cardio":
+            kind = "Cardio";
+            break;
+          default:
+        };
+
         return {
           value: item.value,
-          kind: this._kind[item.kind],
+          kind: kind
         };
       });
-    }
-  
-    get nature() {
-      return this._kind[1];
     }
   }
   

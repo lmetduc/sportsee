@@ -1,3 +1,10 @@
+.body-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 700px;
+}
+
 .body-block {
     display: flex;
     align-items: center;
@@ -24,6 +31,10 @@
     position: relative;
     padding: 0 0 0 20px;
 
+}
+
+.home-text {
+    font-weight: normal;
 }
 
 .home-message {

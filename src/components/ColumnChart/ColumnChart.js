@@ -14,29 +14,15 @@ import {
 import "./ColumnChart.css";
 import Loader from "../../components/Loader/Loader";
 import useFetch from "../../utils/useFetch";
-
+import ActivityFactory from "../../factories/ActivityFactory";
+import PropTypes from 'prop-types';
 
 function ColumnChart({ userID }) {
   const [data, isLoading] = useFetch(
-    `http://localhost:3000/user/${userID}/activity`
+    `http://localhost:3000/user/${userID}/activity`,
+    ActivityFactory,
+    "api"
   );
-  const [values, setValues] = useState(null);
-
-  useEffect(() => {
-    if (data !== null) {
-      let results = [];
-
-      data.sessions.map((item, i) => {
-        results.push({
-          day: i + 1,
-          kilogram: item.kilogram,
-          calories: item.calories
-        });
-      });
-
-      setValues(results);
-    }
-  }, [data]);
 
   if (isLoading) {
     return <Loader />;
@@ -64,7 +50,7 @@ function ColumnChart({ userID }) {
       <BarChart
         width={900}
         height={200}
-        data={values}
+        data={data.sessions}
         margin={{
           top: 10,
           right: 20,
@@ -115,4 +101,10 @@ function ColumnChart({ userID }) {
         </div>
   );
 }
+
+
+ColumnChart.propTypes = {
+  userID : PropTypes.number.isRequired
+}
+
 export default ColumnChart;

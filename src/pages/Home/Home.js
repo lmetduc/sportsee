@@ -11,87 +11,89 @@ import Loader from "../../components/Loader/Loader";
 import ColumnChart from "../../components/ColumnChart/ColumnChart";
 import useFetch from "../../utils/useFetch";
 import UserFactory from "../../factories/UserFactory";
+import Header from "../../components/Header/Header";
 
-
-export default function Home() { 
-
-  const id = 12 // Simule la récupration de l'ID via la connexion de l'utilisateur
+export default function Home() {
+  const id = 12; // Simule la récupration de l'ID via la connexion de l'utilisateur
   //const url = "http://localhost:3000/user/${id}";
   //const { id } = useParams();
 
-  const navigate = useNavigate();
-  const [activity, setActivity]= useState(null);
-  const [session, setSession]= useState(null);
-  const [performance, setPerformance]= useState(null);
+  // const [user, isLoading] = useFetch(`http://localhost:3000/user/${id}`)
 
-// const [user, isLoading] = useFetch(`http://localhost:3000/user/${id}`)
-
-// const [user, isLoading] = useFetch(url, UserFactory, "user")
-const [user, isLoading] = useFetch(`http://localhost:3000/user/${id}`)
+  // const [user, isLoading] = useFetch(url, UserFactory, "user")
+  const [data, isLoading] = useFetch(
+    `http://localhost:3000/user/${id}`,
+    UserFactory,
+    "api"
+  );
 
   // Soit on pas reçu les données => Loader
-  if(isLoading){
-    return  <Loader />
+  if (isLoading) {
+    return <Loader />;
   }
-
 
   // Soit on a reçu les données
   return (
-    <div className="body-block">
+    <div>
+            <Header />
+      <SportsMenu />
+      <div className="body-page">
 
-      {user ? (
+    
+    <div className="body-block">
+      {data ? (
         <div className="body">
           <div className="home-title">
-            <div className="home-message">            
+            <div className="home-message">
               <div className="message">Bonjour</div>
-              <div className="home-username">{user.userInfos.firstName}</div>
+              <div className="home-username">{data.firstname}</div>
             </div>
 
             <div className="home-text">
-            Félicitation ! Vous avez explosé vos objectifs hier 👏
-          </div>
+              Félicitation ! Vous avez explosé vos objectifs hier 👏
+            </div>
           </div>
 
           <div className="content">
-
-          <div className="sidemenu-component">
-              <SideMenu userID={id}/>
+            <div className="sidemenu-component">
+              <SideMenu userID={id} />
               {/*<SideMenu user={user} /> */}
             </div>
 
-          <div className="content-block">
-            <div className="chart-components">
-              <div className="column-chart">
-              <ColumnChart userID={id} />
-                { /* activity ? <ColumnChart data={activity.data.sessions}/> : <Loader /> */}
-              </div>
-
-              <div className="block-chart">
-                <div className="line-chart chart">
-                <LineChart userID={id} />
-                { /*session ? <MyLineChart data={session.data.sessions}/> : <Loader /> */}
+            <div className="content-block">
+              <div className="chart-components">
+                <div className="column-chart">
+                  <ColumnChart userID={id} />
+                  {/* activity ? <ColumnChart data={activity.data.sessions}/> : <Loader /> */}
                 </div>
 
-                <div className="polar-chart chart">
-                <PolarChart userID={id} />
-                { /*performance ? <MyPolarChart data={performance.data}/> : <Loader /> */}
-                </div>
+                <div className="block-chart">
+                  <div className="line-chart chart">
+                    <LineChart userID={id} />
+                    {/*session ? <MyLineChart data={session.data.sessions}/> : <Loader /> */}
+                  </div>
 
-                <div className="pie-chart chart">
-                  <PieChart userID={id}/>
-                { /*<MyPieChart userID={id} />*/}
-                {/* {user ? <MyPieChart data={user.data.todayScore}/> : <Loader />} */}
+                  <div className="polar-chart chart">
+                    <PolarChart userID={id} />
+                    {/*performance ? <MyPolarChart data={performance.data}/> : <Loader /> */}
+                  </div>
+
+                  <div className="pie-chart chart">
+                    <PieChart userID={id} />
+                    {/*<MyPieChart userID={id} />*/}
+                    {/* {user ? <MyPieChart data={user.data.todayScore}/> : <Loader />} */}
+                  </div>
                 </div>
               </div>
             </div>
-            </div>
-
-
           </div>
         </div>
       ) : (
         <Loader />
       )}
+    </div>
+    </div>
+
     </div>
   );
 }

@@ -10,56 +10,24 @@ import {
   PolarRadiusAxis,
   ResponsiveContainer,
 } from "recharts";
+import PerformanceFactory from "../../factories/PerformanceFactory";
+import PropTypes from 'prop-types';
 
 function PolarChart({ userID }) {
   const [data, isLoading] = useFetch(
-    `http://localhost:3000/user/${userID}/performance`
+    `http://localhost:3000/user/${userID}/performance`,
+    PerformanceFactory,
+    "api"
   );
-  const [values, setValues] = useState(null);
-
-  useEffect(() => {
-    if (data !== null) {
-      let results = [];
-
-      data.data.map((item) => {
-        results.push({
-          kind: Translate(data.kind[item.kind]),
-          value: item.value,
-        });
-      });
-
-      setValues(results);
-    }
-  }, [data]);
 
   if (isLoading) {
     return <Loader />;
   }
 
-
-  function Translate(kind) {
-    switch (kind) {
-      case "intensity":
-        return "Intensité";
-      case "speed":
-        return "Vitesse";
-      case "strength":
-        return "Force";
-      case "endurance":
-        return "Endurance";
-      case "energy":
-        return "Energie";
-      case "cardio":
-        return "Cardio";
-      default:
-        return kind;
-    }
-  }
-
   return (
 
     <ResponsiveContainer width="100%" height="100%">
-      <RadarChart cx="50%" cy="50%" outerRadius="50%" data={values}>
+      <RadarChart cx="50%" cy="50%" outerRadius="50%" data={data.activityData}>
         <PolarGrid radialLines={false} />
         <PolarAngleAxis
           axisLine={false}
@@ -83,4 +51,9 @@ function PolarChart({ userID }) {
 
   );
 }
+
+PolarChart.propTypes = {
+  userID : PropTypes.string.isRequired,
+}
+
 export default PolarChart;
