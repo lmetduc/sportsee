@@ -1,12 +1,12 @@
-import "./SideMenu.css";
-import energy from "../../assets/energy.png";
-import protein from "../../assets/chicken.png";
+import PropTypes from "prop-types";
 import carbohydrate from "../../assets/apple.png";
 import fat from "../../assets/cheeseburger.png";
-import useFetch from "../../utils/useFetch";
+import protein from "../../assets/chicken.png";
+import energy from "../../assets/energy.png";
 import Loader from "../../components/Loader/Loader";
 import UserFactory from "../../factories/UserFactory";
-import PropTypes from "prop-types";
+import useFetch from "../../utils/useFetch";
+import "./SideMenu.css";
 
 export default function SideMenu({ userID }) {
   const [data, isLoading] = useFetch(
@@ -70,6 +70,5 @@ export default function SideMenu({ userID }) {
 }
 
 SideMenu.propTypes = {
-  userID : PropTypes.number.isRequired,
-
-}
+  userID: PropTypes.number.isRequired,
+};

@@ -10,8 +10,8 @@ export default function Header() {
   return (
     <div className="sportsee-head">
       <div className="sportsee-banner">
-        <a href="/" >
-        <img src={logo} alt="SportSee" className="sportsee-logo" />
+        <a href="/">
+          <img src={logo} alt="SportSee" className="sportsee-logo" />
         </a>
         <div className="sportsee-block">
           <a className="sportsee-nav" href="/">

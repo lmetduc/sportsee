@@ -1,26 +1,24 @@
-import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+import React from "react";
 import {
-  LineChart as LineChartReCharts,
-  Text,
   Line,
+  LineChart as LineChartReCharts,
+  Rectangle,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  Rectangle,
 } from "recharts";
 import Loader from "../../components/Loader/Loader";
-import { useState, useEffect } from "react";
+import AverageSessionsFactory from "../../factories/AverageSessionsFactory";
 import useFetch from "../../utils/useFetch";
 import "./LineChart.css";
-import PropTypes from "prop-types";
-import AverageSessionsFactory from "../../factories/AverageSessionsFactory";
 
 function LineChart({ userID }) {
   const [data, isLoading] = useFetch(
-    `http://localhost:3000/user/${userID}/average-sessions`, AverageSessionsFactory, "api"
+    `http://localhost:3000/user/${userID}/average-sessions`,
+    AverageSessionsFactory,
+    "api"
   );
 
   if (isLoading) {
@@ -34,9 +32,7 @@ function LineChart({ userID }) {
           <p className="label1">{`${payload[0].value}`} min</p>
         </div>
       );
-
     }
-
 
     return null;
   };
@@ -46,9 +42,8 @@ function LineChart({ userID }) {
     payload: PropTypes.array,
   };
 
-
   /**
-   * 
+   *
    */
   const CustomCursor = (props) => {
     const { points, width, height } = props;
@@ -67,7 +62,11 @@ function LineChart({ userID }) {
     );
   };
 
-
+  CustomCursor.propTypes = {
+    points: PropTypes.array,
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+  };
 
   return (
     <div className="linechart">
@@ -124,7 +123,7 @@ function LineChart({ userID }) {
 }
 
 LineChart.propTypes = {
-  userID : PropTypes.number.isRequired
+  userID: PropTypes.number.isRequired,
 };
 
 export default LineChart;

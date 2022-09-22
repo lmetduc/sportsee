@@ -1,17 +1,15 @@
-import React, { PureComponent } from "react";
-import { useState, useEffect } from "react";
-import Loader from "../../components/Loader/Loader";
-import useFetch from "../../utils/useFetch";
+import PropTypes from "prop-types";
+import React from "react";
 import {
+  PolarAngleAxis,
+  PolarGrid,
   Radar,
   RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
   ResponsiveContainer,
 } from "recharts";
+import Loader from "../../components/Loader/Loader";
 import PerformanceFactory from "../../factories/PerformanceFactory";
-import PropTypes from 'prop-types';
+import useFetch from "../../utils/useFetch";
 
 function PolarChart({ userID }) {
   const [data, isLoading] = useFetch(
@@ -25,7 +23,6 @@ function PolarChart({ userID }) {
   }
 
   return (
-
     <ResponsiveContainer width="100%" height="100%">
       <RadarChart cx="50%" cy="50%" outerRadius="50%" data={data.activityData}>
         <PolarGrid radialLines={false} />
@@ -48,12 +45,11 @@ function PolarChart({ userID }) {
         />
       </RadarChart>
     </ResponsiveContainer>
-
   );
 }
 
 PolarChart.propTypes = {
-  userID : PropTypes.string.isRequired,
-}
+  userID: PropTypes.number.isRequired,
+};
 
 export default PolarChart;

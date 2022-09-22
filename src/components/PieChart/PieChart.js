@@ -1,20 +1,22 @@
-import React, { PureComponent, useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 import {
-  PieChart as PieChartReCharts,
-  Pie,
-  Sector,
   Cell,
+  Pie,
+  PieChart as PieChartReCharts,
   ResponsiveContainer,
 } from "recharts";
-import PropTypes from "prop-types";
-import useFetch from "../../utils/useFetch";
 import Loader from "../../components/Loader/Loader";
-import "./PieChart.css";
 import UserFactory from "../../factories/UserFactory";
-
+import useFetch from "../../utils/useFetch";
+import "./PieChart.css";
 
 function PieChart({ userID }) {
-  const [data, isLoading] = useFetch(`http://localhost:3000/user/${userID}`, UserFactory, "api");
+  const [data, isLoading] = useFetch(
+    `http://localhost:3000/user/${userID}`,
+    UserFactory,
+    "api"
+  );
 
   const [values, setValues] = useState(null);
   const [endAngle, setEndAngle] = useState(null);
@@ -38,12 +40,6 @@ function PieChart({ userID }) {
 
   const COLORS = ["#999999"];
   const pieData = [{ fillColor: "#eeeeee" }];
-  const fullPie = [
-    {
-      nameKey: "name",
-      value: 360,
-    },
-  ];
 
   return (
     <div className="piechart">
@@ -106,10 +102,7 @@ function PieChart({ userID }) {
 }
 
 PieChart.propTypes = {
-  userID : PropTypes.number.isRequired,
-  todayScore : PropTypes.number
-}
-
-
+  userID: PropTypes.number.isRequired,
+};
 
 export default PieChart;
