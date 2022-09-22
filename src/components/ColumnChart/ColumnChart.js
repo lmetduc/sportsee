@@ -16,6 +16,7 @@ import useFetch from "../../utils/useFetch";
 import "./ColumnChart.css";
 
 function ColumnChart({ userID }) {
+  // fetch data from API
   const [data, isLoading] = useFetch(
     `http://localhost:3000/user/${userID}/activity`,
     ActivityFactory,
@@ -25,6 +26,12 @@ function ColumnChart({ userID }) {
   if (isLoading) {
     return <Loader />;
   }
+
+  /**
+   * This function is made to custom the tooltip
+   * @params payload, active
+   * @return customized tooltip components
+   */
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {

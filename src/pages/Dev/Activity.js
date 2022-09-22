@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import { useParams } from 'react-router-dom';
 import ActivityFactory from "../../factories/ActivityFactory";
@@ -9,7 +9,7 @@ export default function Activity(){
     
     const {id} = useParams()
 
-    const [data, isLoading] = useFetch(`http://localhost:3000/user/${id}/activity`, ActivityFactory, "api" )
+    const [data] = useFetch(`http://localhost:3000/user/${id}/activity`, ActivityFactory, "api" )
 
     useEffect(() => {
         console.log(data)

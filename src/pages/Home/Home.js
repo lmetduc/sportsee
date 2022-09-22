@@ -35,65 +35,56 @@ export default function Home() {
   // Soit on a reçu les données
   return (
     <div>
-            <Header />
+      <Header />
       <SportsMenu />
       <div className="body-page">
-
-    
-    <div className="body-block">
-      {data ? (
-        <div className="body">
-          <div className="home-title">
-            <div className="home-message">
-              <div className="message">Bonjour</div>
-              <div className="home-username">{data.firstname}</div>
-            </div>
-
-            <div className="home-text">
-              Félicitation ! Vous avez explosé vos objectifs hier 👏
-            </div>
-          </div>
-
-          <div className="content">
-            <div className="sidemenu-component">
-              <SideMenu userID={id} />
-              {/*<SideMenu user={user} /> */}
-            </div>
-
-            <div className="content-block">
-              <div className="chart-components">
-                <div className="column-chart">
-                  <ColumnChart userID={id} />
-                  {/* activity ? <ColumnChart data={activity.data.sessions}/> : <Loader /> */}
+        <div className="body-block">
+          {data ? (
+            <div className="body">
+              <div className="home-title">
+                <div className="home-message">
+                  <div className="message">Bonjour</div>
+                  <div className="home-username">{data.firstname}</div>
                 </div>
 
-                <div className="block-chart">
-                  <div className="line-chart chart">
-                    <LineChart userID={id} />
-                    {/*session ? <MyLineChart data={session.data.sessions}/> : <Loader /> */}
-                  </div>
+                <div className="home-text">
+                  Félicitation ! Vous avez explosé vos objectifs hier 👏
+                </div>
+              </div>
 
-                  <div className="polar-chart chart">
-                    <PolarChart userID={id} />
-                    {/*performance ? <MyPolarChart data={performance.data}/> : <Loader /> */}
-                  </div>
+              <div className="content">
+                <div className="sidemenu-component">
+                  <SideMenu userID={id} />
+                </div>
 
-                  <div className="pie-chart chart">
-                    <PieChart userID={id} />
-                    {/*<MyPieChart userID={id} />*/}
-                    {/* {user ? <MyPieChart data={user.data.todayScore}/> : <Loader />} */}
+                <div className="content-block">
+                  <div className="chart-components">
+                    <div className="column-chart">
+                      <ColumnChart userID={id} />
+                    </div>
+
+                    <div className="block-chart">
+                      <div className="line-chart chart">
+                        <LineChart userID={id} />
+                      </div>
+
+                      <div className="polar-chart chart">
+                        <PolarChart userID={id} />
+                      </div>
+
+                      <div className="pie-chart chart">
+                        <PieChart userID={id} />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <Loader />
+          )}
         </div>
-      ) : (
-        <Loader />
-      )}
-    </div>
-    </div>
-
+      </div>
     </div>
   );
 }

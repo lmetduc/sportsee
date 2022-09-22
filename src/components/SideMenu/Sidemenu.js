@@ -9,6 +9,8 @@ import useFetch from "../../utils/useFetch";
 import "./SideMenu.css";
 
 export default function SideMenu({ userID }) {
+  // fetch data from API
+
   const [data, isLoading] = useFetch(
     `http://localhost:3000/user/${userID}`,
     UserFactory,

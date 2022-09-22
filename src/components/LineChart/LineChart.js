@@ -15,6 +15,7 @@ import useFetch from "../../utils/useFetch";
 import "./LineChart.css";
 
 function LineChart({ userID }) {
+  // fetch data from API
   const [data, isLoading] = useFetch(
     `http://localhost:3000/user/${userID}/average-sessions`,
     AverageSessionsFactory,
@@ -24,6 +25,12 @@ function LineChart({ userID }) {
   if (isLoading) {
     return <Loader color="loader-white" />;
   }
+
+  /**
+   * This function is made to custom tooltip
+   * @params payload, active
+   * @return customized tooltip components
+   */
 
   const CustomTooltip1 = ({ active, payload }) => {
     if (active && payload && payload.length) {
@@ -42,9 +49,11 @@ function LineChart({ userID }) {
     payload: PropTypes.array,
   };
 
-  /**
-   *
-   */
+  /**This function allows to create customized cursor.
+   * In the graph, when the user hover the dot, a shadow rectangle will cover the graph.
+   * @params props
+   * @return Reactangle component
+   * */
   const CustomCursor = (props) => {
     const { points, width, height } = props;
     const { x } = points[0];

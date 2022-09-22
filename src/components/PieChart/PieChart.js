@@ -12,6 +12,7 @@ import useFetch from "../../utils/useFetch";
 import "./PieChart.css";
 
 function PieChart({ userID }) {
+  // fetch data from API
   const [data, isLoading] = useFetch(
     `http://localhost:3000/user/${userID}`,
     UserFactory,
@@ -25,11 +26,14 @@ function PieChart({ userID }) {
     if (data !== null) {
       const results = [
         {
+          // convert todayScore in percentage
           value: data.todayScore * 100,
         },
       ];
 
       setValues(results);
+
+      // define where graph starts and its direction
       setEndAngle(-360 * data.todayScore);
     }
   }, [data]);
