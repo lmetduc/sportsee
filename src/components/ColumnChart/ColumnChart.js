@@ -18,21 +18,6 @@ import { useEffect, useState } from "react";
 
 function ColumnChart({ userID }) {
 
-  //fetch data form .json
-  // const [data, setData] = useState(null);
-  // const [isLoading, setIsLoading] = useState(true);
-
-  // useEffect(() => {
-  //   fetch(`http://localhost:3000/user/12/activity`)
-  //     .then((response) => response.json())
-  //     .then((response) => {
-  //       setIsLoading(false);
-  //       setData(response);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
-
-
   // fetch data from API or mock (comment or uncomment url part)
   const [data, isLoading] = useFetch(
   // `http://localhost:3000/user/${userID}/activity`,
