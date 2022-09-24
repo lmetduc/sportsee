@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { useEffect, useState } from "react";
 import {
   Line,
   LineChart as LineChartReCharts,
@@ -15,9 +16,11 @@ import useFetch from "../../utils/useFetch";
 import "./LineChart.css";
 
 function LineChart({ userID }) {
-  // fetch data from API
+  
+    // fetch data from API or mock (comment or uncomment url part)
   const [data, isLoading] = useFetch(
-    `http://localhost:3000/user/${userID}/average-sessions`,
+   // `http://localhost:3000/user/${userID}/average-sessions`,
+    `./mock/linechart.json`,
     AverageSessionsFactory,
     "api"
   );

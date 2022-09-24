@@ -21,6 +21,7 @@ function useFetch(url, Factory, type) {
         setTimeout(() => {
           setIsLoading(false);
         }, 2000);
+
         const sessionData = new Factory(response.data, type);
         setData(sessionData);
       })

@@ -10,15 +10,18 @@ import {
 import Loader from "../../components/Loader/Loader";
 import PerformanceFactory from "../../factories/PerformanceFactory";
 import useFetch from "../../utils/useFetch";
+import { useEffect, useState } from "react";
 
 function PolarChart({ userID }) {
-  // fetch data from API
 
+  // fetch data from API or mock (comment or uncomment url part)
   const [data, isLoading] = useFetch(
-    `http://localhost:3000/user/${userID}/performance`,
-    PerformanceFactory,
-    "api"
+   // `http://localhost:3000/user/${userID}/performance`,
+   `./mock/polarchart.json`,
+   PerformanceFactory,
+   "api"
   );
+
 
   if (isLoading) {
     return <Loader />;

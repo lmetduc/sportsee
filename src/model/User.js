@@ -2,7 +2,7 @@ class User {
   constructor(data) {
     this._id = data.id;
     this._userInfos = data.userInfos;
-    this._todayScore = data.todayScore;
+    this._todayScore = (data.todayScore === undefined ? data.score : data.todayScore)
     this._keyData = data.keyData;
   }
 

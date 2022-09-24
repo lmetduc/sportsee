@@ -1,7 +1,4 @@
 import "./Home.css";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import SportsMenu from "../../components/SportsMenu/Sportsmenu";
 import SideMenu from "../../components/SideMenu/Sidemenu";
 import PieChart from "../../components/PieChart/PieChart";
@@ -39,50 +36,46 @@ export default function Home() {
       <SportsMenu />
       <div className="body-page">
         <div className="body-block">
-          {data ? (
-            <div className="body">
-              <div className="home-title">
-                <div className="home-message">
-                  <div className="message">Bonjour</div>
-                  <div className="home-username">{data.firstname}</div>
-                </div>
-
-                <div className="home-text">
-                  Félicitation ! Vous avez explosé vos objectifs hier 👏
-                </div>
+          <div className="body">
+            <div className="home-title">
+              <div className="home-message">
+                <div className="message">Bonjour</div>
+                <div className="home-username">{data.firstname}</div>
               </div>
 
-              <div className="content">
-                <div className="sidemenu-component">
-                  <SideMenu userID={id} />
-                </div>
+              <div className="home-text">
+                Félicitation ! Vous avez explosé vos objectifs hier 👏
+              </div>
+            </div>
 
-                <div className="content-block">
-                  <div className="chart-components">
-                    <div className="column-chart">
-                      <ColumnChart userID={id} />
+            <div className="content">
+              <div className="sidemenu-component">
+                <SideMenu userID={id} />
+              </div>
+
+              <div className="content-block">
+                <div className="chart-components">
+                  <div className="column-chart">
+                    <ColumnChart userID={id} />
+                  </div>
+
+                  <div className="block-chart">
+                    <div className="line-chart chart">
+                      <LineChart userID={id} />
                     </div>
 
-                    <div className="block-chart">
-                      <div className="line-chart chart">
-                        <LineChart userID={id} />
-                      </div>
+                    <div className="polar-chart chart">
+                      <PolarChart userID={id} />
+                    </div>
 
-                      <div className="polar-chart chart">
-                        <PolarChart userID={id} />
-                      </div>
-
-                      <div className="pie-chart chart">
-                        <PieChart userID={id} />
-                      </div>
+                    <div className="pie-chart chart">
+                      <PieChart userID={id} />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          ) : (
-            <Loader />
-          )}
+          </div>
         </div>
       </div>
     </div>

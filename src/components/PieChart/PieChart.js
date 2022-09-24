@@ -12,12 +12,17 @@ import useFetch from "../../utils/useFetch";
 import "./PieChart.css";
 
 function PieChart({ userID }) {
-  // fetch data from API
+    
+  // fetch data from API or mock (comment or uncomment url part)
   const [data, isLoading] = useFetch(
-    `http://localhost:3000/user/${userID}`,
-    UserFactory,
-    "api"
-  );
+     //`http://localhost:3000/user/${userID}`,
+    
+     `./mock/piechart.json`,
+     UserFactory,
+     "api"
+    );
+  
+
 
   const [values, setValues] = useState(null);
   const [endAngle, setEndAngle] = useState(null);
@@ -95,6 +100,7 @@ function PieChart({ userID }) {
         </ResponsiveContainer>
         <div className="text">
           <div className="score">
+            {console.log(data)}
             {data.todayScore * 100}%<br />
           </div>
           de votre
